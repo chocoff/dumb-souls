@@ -9,7 +9,7 @@ namespace FR {
         // There can only be one instance of this object per scene
         public static WorldSaveGameManager instance;
 
-        [SerializeField] int worldSceneIndex = 1;
+        [SerializeField] private int worldSceneIndex = 1;
 
         private void Awake()
         {
@@ -33,6 +33,11 @@ namespace FR {
         {
             AsyncOperation loadOperation = SceneManager.LoadSceneAsync(worldSceneIndex);    
             yield return null;
+        }
+
+        public int getWorldSceneIndex()
+        {
+            return worldSceneIndex;
         }
     }
 }
