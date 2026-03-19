@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &5255642074066552457
+--- !u!1001 &5866065780245350799
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,115 +8,52 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: bf498222646e76f4aae8e84e0e06c325, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 862016b8450fbe88aa2ddeebf44074d1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.75186044
+      value: 507.38
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: bf498222646e76f4aae8e84e0e06c325, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 862016b8450fbe88aa2ddeebf44074d1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.000000037003275
+      value: 0.47
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: bf498222646e76f4aae8e84e0e06c325, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 862016b8450fbe88aa2ddeebf44074d1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.354917
+      value: 2769.195
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: bf498222646e76f4aae8e84e0e06c325, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 862016b8450fbe88aa2ddeebf44074d1, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: bf498222646e76f4aae8e84e0e06c325, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 862016b8450fbe88aa2ddeebf44074d1, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: bf498222646e76f4aae8e84e0e06c325, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 862016b8450fbe88aa2ddeebf44074d1, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: bf498222646e76f4aae8e84e0e06c325, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 862016b8450fbe88aa2ddeebf44074d1, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: bf498222646e76f4aae8e84e0e06c325, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 862016b8450fbe88aa2ddeebf44074d1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: bf498222646e76f4aae8e84e0e06c325, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 862016b8450fbe88aa2ddeebf44074d1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: bf498222646e76f4aae8e84e0e06c325, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 862016b8450fbe88aa2ddeebf44074d1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: bf498222646e76f4aae8e84e0e06c325, type: 3}
+    - target: {fileID: 919132149155446097, guid: 862016b8450fbe88aa2ddeebf44074d1, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bf498222646e76f4aae8e84e0e06c325, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4487567348136730924}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bf498222646e76f4aae8e84e0e06c325, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5205481667106341434}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bf498222646e76f4aae8e84e0e06c325, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4746640644703576551}
-  m_SourcePrefab: {fileID: 100100000, guid: bf498222646e76f4aae8e84e0e06c325, type: 3}
---- !u!1 &4913043803463007192 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bf498222646e76f4aae8e84e0e06c325, type: 3}
-  m_PrefabInstance: {fileID: 5255642074066552457}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4487567348136730924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4913043803463007192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 3196285294
-  InScenePlacedSourceGlobalObjectIdHash: 0
-  DeferredDespawnTick: 0
-  Ownership: 1
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
-  SyncOwnerTransformWhenParented: 1
-  AllowOwnerToParent: 0
---- !u!114 &5205481667106341434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4913043803463007192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d10c299f5790646b8b7a7d5854b4cb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FR.PlayerManager
---- !u!114 &4746640644703576551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4913043803463007192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8733feeb6bbce17fbf364f3dd9b2368, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FR.PlayerMotionManager
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 862016b8450fbe88aa2ddeebf44074d1, type: 3}

@@ -4,7 +4,10 @@ namespace FR {
 
     public class CharacterMotionManager : MonoBehaviour
     {
-
+        protected virtual void Awake()
+        {
+            
+        }
     }
     
 }
