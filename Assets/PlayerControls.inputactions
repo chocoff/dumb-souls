@@ -16,9 +16,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Toggle Walk",
+                    "name": "WalkToggle",
                     "type": "Button",
-                    "id": "eb793a5e-2711-41c1-ac63-52be927b326d",
+                    "id": "6d824218-bc42-4ba2-845c-ff1ed0b78b64",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -29,7 +29,7 @@
                 {
                     "name": "WASD 2D Vector",
                     "id": "f02949f5-463a-4b6f-83fc-f53862f21a5f",
-                    "path": "2DVector(mode=2)",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -83,12 +83,12 @@
                 },
                 {
                     "name": "",
-                    "id": "2ef1cffc-9c89-4ad0-83a2-5f3a50c6a1dd",
+                    "id": "b463323c-0da7-4381-a78c-5aee40117ca2",
                     "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Toggle Walk",
+                    "action": "WalkToggle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

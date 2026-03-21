@@ -35,7 +35,7 @@ namespace FR {
             yield return null;
         }
 
-        public int getWorldSceneIndex()
+        public int GetWorldSceneIndex()
         {
             return worldSceneIndex;
         }

@@ -1,18 +1,28 @@
 using UnityEngine;
 
-public class PlayerCamera : MonoBehaviour
+namespace FR
 {
-    public static PlayerCamera instance; //singleton 
-
-    private void Awake()
+    public class PlayerCamera : MonoBehaviour
     {
-        if (instance == null)
+        public static PlayerCamera instance; //singleton 
+
+        public Camera cameraObject;
+
+        private void Awake()
         {
-            instance = this;
-        }
-        else
+            if (instance == null)
+            {
+                instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        } 
+
+        private void Start()
         {
-            Destroy(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
-    } 
+    }    
 }

@@ -20,6 +20,10 @@ namespace FR
         {
             base.Update();
 
+            // If we are not the owner of this object, we don't control/edit it
+            if (!IsOwner)
+                return;
+
             // Handle all of the player's movement 
             playerMotionManager.HandleAllMovement();
         }

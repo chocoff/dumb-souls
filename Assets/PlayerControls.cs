@@ -102,9 +102,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Toggle Walk"",
+                    ""name"": ""WalkToggle"",
                     ""type"": ""Button"",
-                    ""id"": ""eb793a5e-2711-41c1-ac63-52be927b326d"",
+                    ""id"": ""6d824218-bc42-4ba2-845c-ff1ed0b78b64"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -115,7 +115,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""WASD 2D Vector"",
                     ""id"": ""f02949f5-463a-4b6f-83fc-f53862f21a5f"",
-                    ""path"": ""2DVector(mode=2)"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -169,12 +169,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2ef1cffc-9c89-4ad0-83a2-5f3a50c6a1dd"",
+                    ""id"": ""b463323c-0da7-4381-a78c-5aee40117ca2"",
                     ""path"": ""<Keyboard>/leftCtrl"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Toggle Walk"",
+                    ""action"": ""WalkToggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -186,7 +186,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // Player Movement
         m_PlayerMovement = asset.FindActionMap("Player Movement", throwIfNotFound: true);
         m_PlayerMovement_Movement = m_PlayerMovement.FindAction("Movement", throwIfNotFound: true);
-        m_PlayerMovement_ToggleWalk = m_PlayerMovement.FindAction("Toggle Walk", throwIfNotFound: true);
+        m_PlayerMovement_WalkToggle = m_PlayerMovement.FindAction("WalkToggle", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -268,7 +268,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerMovement;
     private List<IPlayerMovementActions> m_PlayerMovementActionsCallbackInterfaces = new List<IPlayerMovementActions>();
     private readonly InputAction m_PlayerMovement_Movement;
-    private readonly InputAction m_PlayerMovement_ToggleWalk;
+    private readonly InputAction m_PlayerMovement_WalkToggle;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player Movement".
     /// </summary>
@@ -285,9 +285,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Movement => m_Wrapper.m_PlayerMovement_Movement;
         /// <summary>
-        /// Provides access to the underlying input action "PlayerMovement/ToggleWalk".
+        /// Provides access to the underlying input action "PlayerMovement/WalkToggle".
         /// </summary>
-        public InputAction @ToggleWalk => m_Wrapper.m_PlayerMovement_ToggleWalk;
+        public InputAction @WalkToggle => m_Wrapper.m_PlayerMovement_WalkToggle;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -317,9 +317,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
-            @ToggleWalk.started += instance.OnToggleWalk;
-            @ToggleWalk.performed += instance.OnToggleWalk;
-            @ToggleWalk.canceled += instance.OnToggleWalk;
+            @WalkToggle.started += instance.OnWalkToggle;
+            @WalkToggle.performed += instance.OnWalkToggle;
+            @WalkToggle.canceled += instance.OnWalkToggle;
         }
 
         /// <summary>
@@ -334,9 +334,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
-            @ToggleWalk.started -= instance.OnToggleWalk;
-            @ToggleWalk.performed -= instance.OnToggleWalk;
-            @ToggleWalk.canceled -= instance.OnToggleWalk;
+            @WalkToggle.started -= instance.OnWalkToggle;
+            @WalkToggle.performed -= instance.OnWalkToggle;
+            @WalkToggle.canceled -= instance.OnWalkToggle;
         }
 
         /// <summary>
@@ -385,11 +385,11 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMovement(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Toggle Walk" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "WalkToggle" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnToggleWalk(InputAction.CallbackContext context);
+        void OnWalkToggle(InputAction.CallbackContext context);
     }
 }
