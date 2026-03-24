@@ -887,11 +887,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 170}
   m_SizeDelta: {x: 340.0319, y: 50.9339}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!20 &1537718688 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 97852918682408179, guid: 0c930d5f05848a18d8ae86996e38e7fe, type: 3}
-  m_PrefabInstance: {fileID: 5145590285352812243}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1720195162
 GameObject:
   m_ObjectHideFlags: 0
@@ -1328,7 +1323,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75beb185670939d22a6ae6b77a18fde9, type: 3}
---- !u!1001 &5145590285352812243
+--- !u!1001 &5264513355157364526
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1337,12 +1332,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -3337664696969385537, guid: 0c930d5f05848a18d8ae86996e38e7fe, type: 3}
-      propertyPath: cameraObject
-      value: 
-      objectReference: {fileID: 1537718688}
+      propertyPath: upAndDownRotationSpeed
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: -3337664696969385537, guid: 0c930d5f05848a18d8ae86996e38e7fe, type: 3}
+      propertyPath: leftAndRightRotationSpeed
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 2491822486444682119, guid: 0c930d5f05848a18d8ae86996e38e7fe, type: 3}
       propertyPath: m_Name
-      value: Player Camera
+      value: Player Camera (Left & Right)
       objectReference: {fileID: 0}
     - target: {fileID: 7083222104597742405, guid: 0c930d5f05848a18d8ae86996e38e7fe, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1572,4 +1571,4 @@ SceneRoots:
   - {fileID: 7960607375191839420}
   - {fileID: 8231398205008394028}
   - {fileID: 8556215860349957616}
-  - {fileID: 5145590285352812243}
+  - {fileID: 5264513355157364526}

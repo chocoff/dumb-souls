@@ -9,11 +9,17 @@ namespace FR
         public static PlayerInputManager instance;  //singleton
         private PlayerControls playerControls;
 
+        [Header("PLAYER MOVEMENT INPUT")]
         [SerializeField] private Vector2 movementInput;
         public float verticalInput;
         public float horizontalInput;
         public float moveAmount;    // Referenced in player motion manager, so I just set it to public
         public bool isWalking;
+
+        [Header("CAMERA MOVEMENT INPUT")]
+        [SerializeField] private Vector2 cameraInput;
+        public float cameraVerticalInput;
+        public float cameraHorizontalInput;
 
         private void Awake()
         {
@@ -43,7 +49,9 @@ namespace FR
             // If world scene is loaded, enable our player controls 
             if (newScene.buildIndex == WorldSaveGameManager.instance.GetWorldSceneIndex())
             {
-                instance.enabled = true;    
+                instance.enabled = true;
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
             }
             // Otherwise, we don't want to use the player controls since we are in a menu
             else
@@ -60,6 +68,8 @@ namespace FR
 
                 // Whenever we press up or down keys, update the Vector2 variable to reflect the values of the key pressed
                 playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
+                playerControls.PlayerCamera.Movement.performed += i => cameraInput = i.ReadValue<Vector2>();
+                
 
                 // Toggle walk binding
                 playerControls.PlayerMovement.WalkToggle.performed += ctx => ToggleWalk();
@@ -97,10 +107,11 @@ namespace FR
 
         private void Update()
         {
-            HandleMovementInput();
+            HandlePlayerMovementInput();
+            HandleCameraMovementInput();
         }
 
-        private void HandleMovementInput()
+        private void HandlePlayerMovementInput()
         {
             verticalInput = movementInput.y;
             horizontalInput = movementInput.x;
@@ -117,6 +128,12 @@ namespace FR
             {
                 moveAmount = 1;
             }
+        }
+
+        private void HandleCameraMovementInput()
+        {
+            cameraVerticalInput = cameraInput.y;
+            cameraHorizontalInput = cameraInput.x;
         }
     }
 }

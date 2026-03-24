@@ -46,5 +46,11 @@ namespace FR{
 
             }
         }
+    
+        protected virtual void LateUpdate()
+        {
+            
+        }
+    
     }
 }

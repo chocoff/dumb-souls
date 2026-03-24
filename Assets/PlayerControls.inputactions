@@ -93,6 +93,78 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Player Camera",
+            "id": "c1ab0cf7-33f2-4e40-88e0-7c126d657c33",
+            "actions": [
+                {
+                    "name": "Movement",
+                    "type": "PassThrough",
+                    "id": "09c8a8b6-4e80-4cfe-bfb2-d4856d18ec8a",
+                    "expectedControlType": "Vector2",
+                    "processors": "NormalizeVector2",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "2D Vector",
+                    "id": "17c4edd2-5810-49b4-abc5-b27009a51895",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "NormalizeVector2,NormalizeVector2",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "6e6d6d64-2425-47d7-b604-6f9a4fc91ebc",
+                    "path": "<Mouse>/delta/up",
+                    "interactions": "",
+                    "processors": "NormalizeVector2",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "568c46f8-ebf0-46f2-b067-2d728009df9f",
+                    "path": "<Mouse>/delta/down",
+                    "interactions": "",
+                    "processors": "NormalizeVector2",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "18901769-dc16-4f13-96b5-5424fb79a10e",
+                    "path": "<Mouse>/delta/left",
+                    "interactions": "",
+                    "processors": "NormalizeVector2",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "4bd985b1-ed79-4d6a-98f3-fb2717b93cc5",
+                    "path": "<Mouse>/delta/right",
+                    "interactions": "",
+                    "processors": "NormalizeVector2",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
         }
     ],
     "controlSchemes": []
