@@ -102,3 +102,6 @@ InitTestScene*.unity*
 .vscode/
 *.slnx
 
+# ignore asset package
+/[Aa]ssets/Invector-3rdPersonController_LITE
+/[Aa]ssets/Invector-3rdPersonController_LITE.meta
