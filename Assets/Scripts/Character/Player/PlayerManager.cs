@@ -6,14 +6,15 @@ namespace FR
 
     public class PlayerManager : CharacterManager
     {
-
-        PlayerMotionManager playerMotionManager;
+        [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
+        [HideInInspector] public PlayerMotionManager playerMotionManager;
 
         protected override void Awake()
         {
             base.Awake();   // Get all functionality from the base class 
 
             playerMotionManager = GetComponent<PlayerMotionManager>();
+            playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
         }
 
         protected override void Update()
@@ -46,6 +47,7 @@ namespace FR
             if (IsOwner)
             {
                 PlayerCamera.instance.player = this;
+                PlayerInputManager.instance.player = this;
             }
         }
     }       

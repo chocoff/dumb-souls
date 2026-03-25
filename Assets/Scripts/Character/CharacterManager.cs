@@ -5,7 +5,8 @@ namespace FR{
     public class CharacterManager : NetworkBehaviour
     {
 
-        public CharacterController characterController;
+        [HideInInspector] public CharacterController characterController;
+        [HideInInspector] public Animator animator;
 
         CharacterNetworkManager characterNetworkManager;
 
@@ -14,6 +15,7 @@ namespace FR{
             DontDestroyOnLoad(this);   
 
             characterController = GetComponent<CharacterController>();
+            animator = GetComponent<Animator>();
             characterNetworkManager = GetComponent<CharacterNetworkManager>();
         }
 

@@ -7,6 +7,9 @@ namespace FR
     public class PlayerInputManager : MonoBehaviour
     {
         public static PlayerInputManager instance;  //singleton
+
+        public PlayerManager player;
+
         private PlayerControls playerControls;
 
         [Header("PLAYER MOVEMENT INPUT")]
@@ -84,7 +87,7 @@ namespace FR
         }
 
         // If game window is not focused, do not process input
-        private void OplicationFocus(bool focus)
+        private void ApplicationFocus(bool focus)
         {
             if (enabled)
             {
@@ -120,7 +123,7 @@ namespace FR
             moveAmount = Mathf.Clamp01(Mathf.Abs(verticalInput) + Mathf.Abs(horizontalInput));
 
             // TODO: try testing with and without this clamping logic
-            if (moveAmount <= 0.5 && moveAmount > 0)
+            if ((moveAmount <= 0.5 || isWalking) && moveAmount > 0)
             {
                 moveAmount = 0.5f;
             }
@@ -128,6 +131,12 @@ namespace FR
             {
                 moveAmount = 1;
             }
+
+            // 0 in horizontal since we are not locked on (non-strafing movement)
+            player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount);
+
+            // If we are locked on, pass the horizontal values as well
+
         }
 
         private void HandleCameraMovementInput()
