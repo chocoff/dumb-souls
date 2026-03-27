@@ -8,7 +8,14 @@ namespace FR{
         [HideInInspector] public CharacterController characterController;
         [HideInInspector] public Animator animator;
 
-        CharacterNetworkManager characterNetworkManager;
+        [HideInInspector] public CharacterNetworkManager characterNetworkManager;
+
+        [Header("Flags")]
+        public bool isPerformingAction = false;
+        public bool applyRootMotion = false;
+        public bool canRotate = true;
+        public bool canMove = true;
+
 
         protected virtual void Awake()
         {

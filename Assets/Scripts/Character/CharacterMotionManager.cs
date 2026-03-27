@@ -8,6 +8,11 @@ namespace FR {
         {
             
         }
+
+        protected virtual void Update()
+        {
+            
+        }
     }
     
 }

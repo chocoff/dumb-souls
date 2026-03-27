@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace FR
 {
@@ -12,6 +13,11 @@ namespace FR
 
         private PlayerControls playerControls;
 
+        [Header("CAMERA MOVEMENT INPUT")]
+        [SerializeField] private Vector2 cameraInput;
+        public float cameraVerticalInput;
+        public float cameraHorizontalInput;
+
         [Header("PLAYER MOVEMENT INPUT")]
         [SerializeField] private Vector2 movementInput;
         public float verticalInput;
@@ -19,10 +25,8 @@ namespace FR
         public float moveAmount;    // Referenced in player motion manager, so I just set it to public
         public bool isWalking;
 
-        [Header("CAMERA MOVEMENT INPUT")]
-        [SerializeField] private Vector2 cameraInput;
-        public float cameraVerticalInput;
-        public float cameraHorizontalInput;
+        [Header("PLAYER ACTION INPUT")]
+        [SerializeField] private bool dodgeInput = false;
 
         private void Awake()
         {
@@ -63,19 +67,22 @@ namespace FR
             }
         }
 
-        private void OnEnable()
+        private void OnEnable() // When any action is triggered
         {
             if (playerControls == null)
             {
                 playerControls = new PlayerControls();
 
-                // Whenever we press up or down keys, update the Vector2 variable to reflect the values of the key pressed
+                // "WASD", update the Vector2 variable to reflect the values of the key pressed
                 playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
                 playerControls.PlayerCamera.Movement.performed += i => cameraInput = i.ReadValue<Vector2>();
                 
-
                 // Toggle walk binding
                 playerControls.PlayerMovement.WalkToggle.performed += ctx => ToggleWalk();
+
+                // "Space" for dodging
+                playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
+
             }
 
             playerControls.Enable();
@@ -87,7 +94,7 @@ namespace FR
         }
 
         // If game window is not focused, do not process input
-        private void ApplicationFocus(bool focus)
+        private void OnApplicationFocus(bool focus)
         {
             if (enabled)
             {
@@ -110,10 +117,18 @@ namespace FR
 
         private void Update()
         {
-            HandlePlayerMovementInput();
-            HandleCameraMovementInput();
+            HandleAllInputs();
         }
 
+        // INPUT HANDLERS SECTION
+        private void HandleAllInputs()
+        {
+            HandlePlayerMovementInput();
+            HandleCameraMovementInput();
+            HandleDodgeInput();
+        }
+
+        // MOVEMENT
         private void HandlePlayerMovementInput()
         {
             verticalInput = movementInput.y;
@@ -132,6 +147,8 @@ namespace FR
                 moveAmount = 1;
             }
 
+            if (player == null)
+                return;
             // 0 in horizontal since we are not locked on (non-strafing movement)
             player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount);
 
@@ -144,5 +161,18 @@ namespace FR
             cameraVerticalInput = cameraInput.y;
             cameraHorizontalInput = cameraInput.x;
         }
+    
+        // ACTION
+        private void HandleDodgeInput()
+        {
+            if (dodgeInput)
+            {
+                dodgeInput = false;
+                
+                // DO A FLIP!
+                player.playerMotionManager.AttemptToPerformDodge();
+            }
+        }
+
     }
 }
