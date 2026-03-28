@@ -1514,6 +1514,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 762561991305440922, guid: 3bb91c0afd041f05d9a9c63fd603c7ee, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 762561991305440922, guid: 3bb91c0afd041f05d9a9c63fd603c7ee, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 762561991305440922, guid: 3bb91c0afd041f05d9a9c63fd603c7ee, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 762561991305440922, guid: 3bb91c0afd041f05d9a9c63fd603c7ee, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2775613777381335212, guid: 3bb91c0afd041f05d9a9c63fd603c7ee, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2775613777381335212, guid: 3bb91c0afd041f05d9a9c63fd603c7ee, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5802692326347194229, guid: 3bb91c0afd041f05d9a9c63fd603c7ee, type: 3}
       propertyPath: m_Name
       value: Player UI Manager
@@ -1556,6 +1580,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7507739582338071074, guid: 3bb91c0afd041f05d9a9c63fd603c7ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8959342524640068085, guid: 3bb91c0afd041f05d9a9c63fd603c7ee, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8959342524640068085, guid: 3bb91c0afd041f05d9a9c63fd603c7ee, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8959342524640068085, guid: 3bb91c0afd041f05d9a9c63fd603c7ee, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

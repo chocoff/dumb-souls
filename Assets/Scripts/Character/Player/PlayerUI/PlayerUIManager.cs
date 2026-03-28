@@ -9,6 +9,8 @@ namespace FR{
         [Header("NETWORK JOIN")]
         [SerializeField] bool startGameAsClient;
 
+        [HideInInspector] public PlayerUIHUDManager playerUIHUDManager;
+
         private void Awake()
         {
         // There should always be only one instance
@@ -20,6 +22,8 @@ namespace FR{
             {
                 Destroy(gameObject);
             }
+
+            playerUIHUDManager = GetComponentInChildren<PlayerUIHUDManager>();
         }
 
         private void Start()

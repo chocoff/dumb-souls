@@ -8,6 +8,8 @@ namespace FR
     {
         [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
         [HideInInspector] public PlayerMotionManager playerMotionManager;
+        [HideInInspector] public PlayerNetworkManager playerNetworkManager;
+        [HideInInspector] public PlayerStatsManager playerStatsManager;
 
         protected override void Awake()
         {
@@ -15,6 +17,9 @@ namespace FR
 
             playerMotionManager = GetComponent<PlayerMotionManager>();
             playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
+            playerNetworkManager = GetComponent<PlayerNetworkManager>();
+            playerStatsManager = GetComponent<PlayerStatsManager>();
+            
         }
 
         protected override void Update()
@@ -27,6 +32,9 @@ namespace FR
 
             // Handle all of the player's movement 
             playerMotionManager.HandleAllMovement();
+
+            // Regen stamina 
+            playerStatsManager.RegenerateStamina();
         }
 
         protected override void LateUpdate()
@@ -48,6 +56,14 @@ namespace FR
             {
                 PlayerCamera.instance.player = this;
                 PlayerInputManager.instance.player = this;
+
+                playerNetworkManager.currentStamina.OnValueChanged += PlayerUIManager.instance.playerUIHUDManager.SetNewStaminaValue;
+                playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenTimer;
+
+                // Note: This will be moved when saving a loading is added
+                playerNetworkManager.maxStamina.Value = playerStatsManager.CalculateStaminaBasedOnEnduraceLevel(playerNetworkManager.endurance.Value);
+                playerNetworkManager.currentStamina.Value = playerStatsManager.CalculateStaminaBasedOnEnduraceLevel(playerNetworkManager.endurance.Value);
+                PlayerUIManager.instance.playerUIHUDManager.SetMaxStaminaValue(playerNetworkManager.maxStamina.Value);
             }
         }
     }       

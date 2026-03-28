@@ -27,6 +27,7 @@ namespace FR
 
         [Header("PLAYER ACTION INPUT")]
         [SerializeField] private bool dodgeInput = false;
+        [SerializeField] private bool sprintInput = false;
 
         private void Awake()
         {
@@ -83,6 +84,10 @@ namespace FR
                 // "Space" for dodging
                 playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
 
+                // "Left Shift" for sprinting (Hold)
+                playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
+                playerControls.PlayerActions.Sprint.canceled += i => sprintInput = false;
+
             }
 
             playerControls.Enable();
@@ -126,6 +131,7 @@ namespace FR
             HandlePlayerMovementInput();
             HandleCameraMovementInput();
             HandleDodgeInput();
+            HandleSprinting();
         }
 
         // MOVEMENT
@@ -150,7 +156,7 @@ namespace FR
             if (player == null)
                 return;
             // 0 in horizontal since we are not locked on (non-strafing movement)
-            player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount);
+            player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value);
 
             // If we are locked on, pass the horizontal values as well
 
@@ -174,5 +180,17 @@ namespace FR
             }
         }
 
+
+        private void HandleSprinting()
+        {
+            if (sprintInput)
+            {
+                player.playerMotionManager.HandleSprinting();
+            }
+            else
+            {
+                player.playerNetworkManager.isSprinting.Value = false;
+            }
+        }
     }
 }

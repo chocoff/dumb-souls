@@ -12,16 +12,20 @@ namespace FR
         [HideInInspector] public float horizontalMovement;
         [HideInInspector] public float moveAmount;
 
-        [Header("MOVEMENT SETTINGS")]
         private Vector3 moveDirection;
         private Vector3 targetRotationDirection;
+        //[Header("MOVEMENT SETTINGS")]
+        [Header("MOVEMENT SETTINGS")]
         [SerializeField] private float walkingSpeed = 2;
-        [SerializeField] private float runningSpeed = 5;
+        [SerializeField] private float runningSpeed = 4.5f;
+        [SerializeField] private float sprintingSpeed= 8;
         [SerializeField] private float rotationSpeed = 14;
+        [SerializeField] private int sprintingStaminaCost = 3;
 
 
         [Header("DODGE")]
         private Vector3 rollDirection;
+        [SerializeField] private float dodgeStaminaCost = 3;
 
         protected override void Awake()
         {
@@ -47,7 +51,7 @@ namespace FR
                 moveAmount = player.characterNetworkManager.moveAmount.Value;
 
                 // If not locked, pass move amount
-                player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount);
+                player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value);
 
                 // If locked on, pass horizontal and vertical value
             }
@@ -83,19 +87,27 @@ namespace FR
             moveDirection.Normalize();
             moveDirection.y = 0; 
 
-            // Change speed depending on walk toggle (keyboard) or moveAmount (joystick)
-            float speed;
-
-            if (PlayerInputManager.instance.isWalking)
+            if (player.playerNetworkManager.isSprinting.Value)
             {
-                speed = walkingSpeed;
+                player.characterController.Move(moveDirection * sprintingSpeed * Time.deltaTime);
             }
             else
             {
-                speed = PlayerInputManager.instance.moveAmount > 0.5f ? runningSpeed : walkingSpeed;
+                // Change speed depending on walk toggle (keyboard) or moveAmount (joystick)
+                float speed;
+
+                if (PlayerInputManager.instance.isWalking)
+                {
+                    speed = walkingSpeed;
+                }
+                else
+                {
+                    speed = PlayerInputManager.instance.moveAmount > 0.5f ? runningSpeed : walkingSpeed;
+                }
+
+                player.characterController.Move(moveDirection * speed * Time.deltaTime);
             }
 
-            player.characterController.Move(moveDirection * speed * Time.deltaTime);
         }
     
         private void HandleRotation()
@@ -121,10 +133,43 @@ namespace FR
             transform.rotation = targetRotation;
         }
     
+        public void HandleSprinting()
+        {
+            if (player.isPerformingAction)
+            {
+                player.playerNetworkManager.isSprinting.Value = false;
+            }
+
+            // If out of stamina, sprint is false
+            if (player.playerNetworkManager.currentStamina.Value <= 0)
+            {
+                player.playerNetworkManager.isSprinting.Value = false;
+                return;
+            }
+
+            // If moving, sprint is true, otherwise false, this can be a oneliner but meh
+            if (moveAmount >= 0.5)
+            {
+                player.playerNetworkManager.isSprinting.Value = true;
+            }
+            else
+            {
+                player.playerNetworkManager.isSprinting.Value = false;
+            }
+
+            if (player.playerNetworkManager.isSprinting.Value)
+            {
+                player.playerNetworkManager.currentStamina.Value -= sprintingStaminaCost * Time.deltaTime;
+            }
+        }
+
         public void AttemptToPerformDodge()
         {
             if (player.isPerformingAction)
                return;
+
+            if (player.playerNetworkManager.currentStamina.Value <= 0)
+                return;
 
             // If player is moving when dodge is triggered, roll. Else, backstep
             if (PlayerInputManager.instance.moveAmount > 0)
@@ -145,7 +190,11 @@ namespace FR
                 player.playerAnimatorManager.PlayTargetActionAnimation("Jump_Back_01", true, true);
 
             }
+
+            player.playerNetworkManager.currentStamina.Value -= dodgeStaminaCost;
         }
+    
+
     }
 
 }

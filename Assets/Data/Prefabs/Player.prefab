@@ -69,13 +69,16 @@ PrefabInstance:
       addedObject: {fileID: 8628321953079750013}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 862016b8450fbe88aa2ddeebf44074d1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8455102969183627352}
+      addedObject: {fileID: 8238857676733559773}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 862016b8450fbe88aa2ddeebf44074d1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7027672938673022981}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 862016b8450fbe88aa2ddeebf44074d1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8238857676733559773}
+      addedObject: {fileID: -6522927871995347564}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 862016b8450fbe88aa2ddeebf44074d1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8588052145637734094}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 862016b8450fbe88aa2ddeebf44074d1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 221506108907559366}
@@ -119,46 +122,6 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
---- !u!114 &8455102969183627352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3373149863057471475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8733feeb6bbce17fbf364f3dd9b2368, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FR.PlayerMotionManager
-  verticalMovement: 0
-  horizontalMovement: 0
-  moveAmount: 0
-  walkingSpeed: 1.5
-  runningSpeed: 6
-  rotationSpeed: 15
---- !u!114 &7027672938673022981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3373149863057471475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d10c299f5790646b8b7a7d5854b4cb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FR.PlayerManager
-  ShowTopMostFoldoutHeaderGroup: 1
-  characterController: {fileID: 0}
-  animator: {fileID: 0}
-  characterNetworkManager: {fileID: 0}
-  isPerformingAction: 0
-  applyRootMotion: 0
-  canRotate: 1
-  canMove: 1
-  playerAnimatorManager: {fileID: 0}
-  playerMotionManager: {fileID: 0}
 --- !u!114 &8238857676733559773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,6 +163,85 @@ MonoBehaviour:
       MinSecondsBetweenUpdates: 0
       MaxSecondsBetweenUpdates: 0
     m_InternalValue: 0
+  isSprinting:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 0
+  endurance:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 1
+  currentStamina:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 0
+  maxStamina:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 0
+--- !u!114 &7027672938673022981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3373149863057471475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d10c299f5790646b8b7a7d5854b4cb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FR.PlayerManager
+  ShowTopMostFoldoutHeaderGroup: 1
+  characterController: {fileID: 0}
+  animator: {fileID: 0}
+  characterNetworkManager: {fileID: 0}
+  isPerformingAction: 0
+  applyRootMotion: 0
+  canRotate: 1
+  canMove: 1
+  playerAnimatorManager: {fileID: 0}
+  playerMotionManager: {fileID: 0}
+  playerNetworkManager: {fileID: 0}
+  playerStatsManager: {fileID: 0}
+--- !u!114 &-6522927871995347564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3373149863057471475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8733feeb6bbce17fbf364f3dd9b2368, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FR.PlayerMotionManager
+  verticalMovement: 0
+  horizontalMovement: 0
+  moveAmount: 0
+  walkingSpeed: 2
+  runningSpeed: 4.5
+  sprintingSpeed: 8
+  rotationSpeed: 14
+  sprintingStaminaCost: 3
+  dodgeStaminaCost: 3
+--- !u!114 &-8588052145637734094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3373149863057471475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75f873bd264355e9db52f3084cee7380, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FR.PlayerStatsManager
+  staminaRegenerationAmount: 1
+  staminaRegenerationDelay: 1
 --- !u!114 &221506108907559366
 MonoBehaviour:
   m_ObjectHideFlags: 0
