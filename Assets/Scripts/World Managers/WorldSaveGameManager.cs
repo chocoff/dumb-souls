@@ -9,7 +9,7 @@ namespace FR {
         // There can only be one instance of this object per scene
         public static WorldSaveGameManager instance;
 
-        [SerializeField] private PlayerManager player;
+        public PlayerManager player;
 
         [Header("SAVE/LOAD")]
         [SerializeField] private bool saveGame;
@@ -29,8 +29,8 @@ namespace FR {
         [Header("CHARACTER SLOTS")]
         public CharacterSaveData characterSlot01;
         public CharacterSaveData characterSlot02;
-        public CharacterSaveData characterSlot04;
         public CharacterSaveData characterSlot03;
+        public CharacterSaveData characterSlot04;
         public CharacterSaveData characterSlot05;
         public CharacterSaveData characterSlot06;
         public CharacterSaveData characterSlot07;
@@ -114,12 +114,51 @@ namespace FR {
             return fileName;
         }
 
-        public void CreateNewGame()
+        public void AttemptToCreateNewGame()
         {
+            /* THE MONKEY WAY THAT I DO NOT WANT TO DO BUT MAYBE WE NEED TO FALL BACK TO THIS LOGIC IF MY DUMB HEAD DOES NOT IMPLEMENT THE LOOP PROPERLY
+            saveFileDataWriter = new SaveFileDataWriter();
+            
+            // Check to see if we can create a new save file (check for other existent files first)
+            saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_01);
+
+            if (!saveFileDataWriter.CheckToSeeIfFileExists())             // If this profile slot is not taken, make a new one using this slot
+            {
+                currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_01;
+                currentCharacterData = new CharacterSaveData();
+                StartCoroutine(LoadWorldScene());
+                return;
+            }
+
             // Create a new file, name depends on which slot is used
             saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(currentCharacterSlotBeingUsed);
+            */
+            // The pro way...
+            saveFileDataWriter = new SaveFileDataWriter
+            {
+                saveDataDirectoryPath = Application.persistentDataPath
+            };
 
-            currentCharacterData = new CharacterSaveData();
+            // Loop through all available character slots
+            foreach (CharacterSlot slot in System.Enum.GetValues(typeof(CharacterSlot)))
+            {
+                // Check to see if we can creaete a new save file for this specific slot
+                saveFileDataWriter.saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(slot);
+
+
+                // If this profile slot is not taken, grab it and START THE GAME
+                if (!saveFileDataWriter.CheckToSeeIfFileExists())
+                {
+                    currentCharacterSlotBeingUsed = slot;
+                    currentCharacterData = new CharacterSaveData();
+                    StartCoroutine(LoadWorldScene());
+                    return; // Exit the entire function since we successfully started a new game
+                }
+            }
+
+            // If code reaches this point, it means ALL slots are already full. TODO: handle this case (UI message, provide option to delete savefile). UPDATE: DONE!!!
+            TitleScreenManager.Instance.DisplayNoFreeCharacterSlotPopUp();
+            Debug.LogWarning("ALL CHARACTER SLOTS ARE CURRENTLY FULL!");
         }
 
         public void LoadGame()
@@ -195,6 +234,9 @@ namespace FR {
         public IEnumerator LoadWorldScene()
         {
             AsyncOperation loadOperation = SceneManager.LoadSceneAsync(worldSceneIndex);    
+
+            player.LoadGameDataFromCurrentCharacterData(ref currentCharacterData);
+
             yield return null;
         }
 

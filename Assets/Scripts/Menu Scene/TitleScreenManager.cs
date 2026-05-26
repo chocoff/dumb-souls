@@ -6,14 +6,33 @@ namespace FR
 {
     public class TitleScreenManager : MonoBehaviour
     {
+        public static TitleScreenManager Instance;
+
         [Header("MENU OBJECTS")]
         [SerializeField] GameObject titleScreenMainMenu;
         [SerializeField] GameObject titleScreenLoadMenu;
 
         [Header("BUTTONS")]
+        [SerializeField] Button mainMenuNewGameButton;
         [SerializeField] Button loadMenuReturnButton;
         [SerializeField] Button mainMenuLoadGameButton;
 
+        [Header("POP UPS")]
+        [SerializeField] GameObject noCharacterSlotsPopUp;
+        [SerializeField] Button noCharacterSlotsOkButton;
+
+
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }   
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
 
         public void StartNetworkAsHost()
         {
@@ -22,8 +41,7 @@ namespace FR
 
         public void StartNewGame()
         {
-            WorldSaveGameManager.instance.CreateNewGame();
-            StartCoroutine(WorldSaveGameManager.instance.LoadWorldScene());
+            WorldSaveGameManager.instance.AttemptToCreateNewGame();
         }    
     
         public void OpenLoadGameMenu()
@@ -45,6 +63,19 @@ namespace FR
 
             // Select the load button
             mainMenuLoadGameButton.Select();
+        }
+    
+        public void DisplayNoFreeCharacterSlotPopUp()
+        {
+            noCharacterSlotsPopUp.SetActive(true);
+            noCharacterSlotsOkButton.Select();
+        }
+    
+        public void CloseNoFreeCharacterSlotPopUp()
+        {
+            noCharacterSlotsPopUp.SetActive(false);
+            mainMenuLoadGameButton.Select();
+            
         }
     }
 }

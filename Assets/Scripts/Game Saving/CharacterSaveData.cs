@@ -7,7 +7,7 @@ namespace FR
     public class CharacterSaveData
     {
         [Header("Character Name")]
-        public string characterName;
+        public string characterName = "Character";
 
         [Header("TIME PLAYED")]
         public float secondsPlayed;

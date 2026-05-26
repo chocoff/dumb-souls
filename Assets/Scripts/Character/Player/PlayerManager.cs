@@ -56,6 +56,7 @@ namespace FR
             {
                 PlayerCamera.instance.player = this;
                 PlayerInputManager.instance.player = this;
+                WorldSaveGameManager.instance.player = this;
 
                 playerNetworkManager.currentStamina.OnValueChanged += PlayerUIManager.instance.playerUIHUDManager.SetNewStaminaValue;
                 playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenTimer;
@@ -82,6 +83,8 @@ namespace FR
             transform.position = myPosition;
         }
     
+
+
     }       
 
 }
