@@ -172,6 +172,11 @@ namespace FR
             WorldSaveGameManager.instance.currentCharacterSlotBeingUsed = characterSlot;
             WorldSaveGameManager.instance.LoadGame();
         }
+
+        public void SelectCurrentSlot()
+        {
+            TitleScreenManager.Instance.SelectCharacterSlot(characterSlot);
+        }
     }    
 }
 

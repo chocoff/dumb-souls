@@ -142,6 +142,8 @@ namespace FR {
             // Loop through all available character slots
             foreach (CharacterSlot slot in System.Enum.GetValues(typeof(CharacterSlot)))
             {
+                if (slot == CharacterSlot.NO_SLOT) continue;
+
                 // Check to see if we can creaete a new save file for this specific slot
                 saveFileDataWriter.saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(slot);
 
@@ -194,6 +196,18 @@ namespace FR {
             saveFileDataWriter.CreateNewCharacterSaveFile(currentCharacterData);
         }
 
+        public void DeleteGame(CharacterSlot characterSlot)
+        {
+            saveFileDataWriter = new SaveFileDataWriter
+            {
+                saveDataDirectoryPath = Application.persistentDataPath,
+                // Choose a file to delete based on the name
+                saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(characterSlot)
+            };
+
+            saveFileDataWriter.DeleteSaveFile();
+        }
+
         // (pre) load all character profiles on device when starting game
         private void LoadAllCharacterProfiles()
         {
@@ -233,8 +247,9 @@ namespace FR {
 
         public IEnumerator LoadWorldScene()
         {
-            AsyncOperation loadOperation = SceneManager.LoadSceneAsync(worldSceneIndex);    
 
+            AsyncOperation loadOperation = SceneManager.LoadSceneAsync(worldSceneIndex);   
+             
             player.LoadGameDataFromCurrentCharacterData(ref currentCharacterData);
 
             yield return null;

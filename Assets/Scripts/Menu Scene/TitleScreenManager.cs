@@ -16,11 +16,18 @@ namespace FR
         [SerializeField] Button mainMenuNewGameButton;
         [SerializeField] Button loadMenuReturnButton;
         [SerializeField] Button mainMenuLoadGameButton;
+        [SerializeField] Button deleteCharacterPopUpConfirmButton;
+        
+        // The following variable will hold refs to the 10 slot buttons in order (when available)
+        [SerializeField] Button[] characterSlotButtons; 
 
         [Header("POP UPS")]
         [SerializeField] GameObject noCharacterSlotsPopUp;
         [SerializeField] Button noCharacterSlotsOkButton;
+        [SerializeField] GameObject deleteCharacterSlotPopUp;
 
+        [Header("CHARCTER SLOTS")]
+        public CharacterSlot currentSelectedSlot = CharacterSlot.NO_SLOT;
 
         private void Awake()
         {
@@ -76,6 +83,60 @@ namespace FR
             noCharacterSlotsPopUp.SetActive(false);
             mainMenuLoadGameButton.Select();
             
+        }
+    
+        // Character slots related
+
+        public void SelectCharacterSlot(CharacterSlot characterSlot)
+        {
+            currentSelectedSlot = characterSlot;
+        }
+
+        public void SelectNoSlot()
+        {
+            currentSelectedSlot = CharacterSlot.NO_SLOT;
+        }
+
+        public void AttemptToDeleteCharacterSlot()
+        {
+            if (currentSelectedSlot != CharacterSlot.NO_SLOT)
+            {
+                deleteCharacterSlotPopUp.SetActive(true);          
+                deleteCharacterPopUpConfirmButton.Select();      
+            }
+        }
+
+        public void DeleteCharacterSlot()
+        {
+            deleteCharacterSlotPopUp.SetActive(false);
+            WorldSaveGameManager.instance.DeleteGame(currentSelectedSlot);    
+            
+            // Disable and enable load menu to refresh the slots (after deletion)
+            titleScreenLoadMenu.SetActive(false);
+            titleScreenLoadMenu.SetActive(true);
+            
+            // deleteCharacterPopUpConfirmButton.Select();
+            SelectNoSlot();                     //clear the stale slot ref
+            SelectFirstAvailableSlotOrReturn(); // focus a real, visible button
+        }
+
+        public void CloseDeleteCharacterPopUp()
+        {
+            deleteCharacterSlotPopUp.SetActive(false);
+            loadMenuReturnButton.Select();
+        }
+ 
+        private void SelectFirstAvailableSlotOrReturn()
+        {
+            foreach (Button slotButton in characterSlotButtons)
+            {
+                if (slotButton != null && slotButton.gameObject.activeInHierarchy)
+                {
+                    slotButton.Select();
+                    return;
+                }
+            }
+            loadMenuReturnButton.Select();
         }
     }
 }

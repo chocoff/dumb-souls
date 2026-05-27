@@ -6,7 +6,10 @@ namespace FR
     [System.Serializable]   // Reference this data for every save file
     public class CharacterSaveData
     {
-        [Header("Character Name")]
+        // [Header("SCENE INDEX")]
+        // public int sceneIndex = 1;
+
+        [Header("CHARACTER NAME")]
         public string characterName = "Character";
 
         [Header("TIME PLAYED")]
