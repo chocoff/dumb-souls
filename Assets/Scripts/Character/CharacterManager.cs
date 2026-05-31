@@ -10,8 +10,10 @@ namespace FR{
 
         [HideInInspector] public CharacterNetworkManager characterNetworkManager;
 
-        [Header("Flags")]
+        [Header("FLAGS")]
         public bool isPerformingAction = false;
+        public bool isJumping = false;
+        public bool isGrounded = true;
         public bool applyRootMotion = false;
         public bool canRotate = true;
         public bool canMove = true;
@@ -27,6 +29,8 @@ namespace FR{
 
         protected virtual void Update()
         {
+            animator.SetBool("isGrounded", isGrounded);
+
             // If the character is controlled from one's side, assign its network position to one's transform
             if (IsOwner)
             {

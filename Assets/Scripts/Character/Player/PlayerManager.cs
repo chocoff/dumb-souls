@@ -66,6 +66,9 @@ namespace FR
                 playerNetworkManager.maxStamina.Value = playerStatsManager.CalculateStaminaBasedOnEnduraceLevel(playerNetworkManager.endurance.Value);
                 playerNetworkManager.currentStamina.Value = playerStatsManager.CalculateStaminaBasedOnEnduraceLevel(playerNetworkManager.endurance.Value);
                 PlayerUIManager.instance.playerUIHUDManager.SetMaxStaminaValue(playerNetworkManager.maxStamina.Value);
+
+                // FR
+                // LoadGameDataFromCurrentCharacterData(ref WorldSaveGameManager.instance.currentCharacterData);
             }
         }
     
@@ -85,9 +88,6 @@ namespace FR
             Vector3 myPosition = new Vector3(currentCharacterData.xPosition, currentCharacterData.yPosition, currentCharacterData.zPosition);
             transform.position = myPosition;
         }
-    
-
-
     }       
 
 }

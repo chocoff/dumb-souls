@@ -249,7 +249,11 @@ namespace FR {
         {
 
             AsyncOperation loadOperation = SceneManager.LoadSceneAsync(worldSceneIndex);   
-             
+            
+            // if (player != null)
+            // {
+            //     player.LoadGameDataFromCurrentCharacterData(ref currentCharacterData);                
+            // }
             player.LoadGameDataFromCurrentCharacterData(ref currentCharacterData);
 
             yield return null;

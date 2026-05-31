@@ -28,6 +28,7 @@ namespace FR
         [Header("PLAYER ACTION INPUT")]
         [SerializeField] private bool dodgeInput = false;
         [SerializeField] private bool sprintInput = false;
+        [SerializeField] private bool jumpInput = false;
 
         private void Awake()
         {
@@ -84,6 +85,9 @@ namespace FR
                 // "Space" for dodging
                 playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
 
+                // "F" for jumping
+                playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
+
                 // "Left Shift" for sprinting (Hold)
                 playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
                 playerControls.PlayerActions.Sprint.canceled += i => sprintInput = false;
@@ -131,7 +135,7 @@ namespace FR
             HandlePlayerMovementInput();
             HandleCameraMovementInput();
             HandleDodgeInput();
-            HandleSprinting();
+            HandleSprintingInput();
         }
 
         // MOVEMENT
@@ -181,7 +185,7 @@ namespace FR
         }
 
 
-        private void HandleSprinting()
+        private void HandleSprintingInput()
         {
             if (sprintInput)
             {
@@ -190,6 +194,19 @@ namespace FR
             else
             {
                 player.playerNetworkManager.isSprinting.Value = false;
+            }
+        }
+    
+        private void HandleJumpInput()
+        {
+            if (jumpInput)
+            {
+                jumpInput = false;
+
+                // If we have a UI window open, simply return without doing anything
+
+                // Try to perform jump
+                player.playerMotionManager.AttemptToPerformJump();
             }
         }
     }

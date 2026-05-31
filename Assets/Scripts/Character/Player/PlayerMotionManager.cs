@@ -18,7 +18,7 @@ namespace FR
         [Header("MOVEMENT SETTINGS")]
         [SerializeField] private float walkingSpeed = 2;
         [SerializeField] private float runningSpeed = 4.5f;
-        [SerializeField] private float sprintingSpeed= 8;
+        [SerializeField] private float sprintingSpeed = 8;
         [SerializeField] private float rotationSpeed = 14;
         [SerializeField] private int sprintingStaminaCost = 3;
 
@@ -26,6 +26,7 @@ namespace FR
         [Header("DODGE")]
         private Vector3 rollDirection;
         [SerializeField] private float dodgeStaminaCost = 3;
+        [SerializeField] private float jumpStaminaCost = 3;
 
         protected override void Awake()
         {
@@ -194,6 +195,37 @@ namespace FR
             player.playerNetworkManager.currentStamina.Value -= dodgeStaminaCost;
         }
     
+        public void AttemptToPerformJump()
+        {
+            // If we are performing a general action, do not allow jump (need to change when combat is added)
+            if (player.isPerformingAction)
+               return;
+
+            // If we are out of stamina, do not allow jump
+            if (player.playerNetworkManager.currentStamina.Value <= 0)
+                return;
+
+            // If we already jump, do not allow jump
+            if (player.isJumping)
+                return;
+
+            // If we are not in the ground, do not allow jump
+            if (!player.isGrounded)
+                return;
+
+            // If we are two handing, play the corresponding animation (TODO)
+
+            player.playerAnimatorManager.PlayTargetActionAnimation("Main_Jump_Up_01", false);
+
+            player.isJumping = true;
+
+            player.playerNetworkManager.currentStamina.Value -= jumpStaminaCost;
+        }
+    
+        public void ApplyJumpingVelocity()
+        {
+            // apply upward jumping velocity
+        }
 
     }
 

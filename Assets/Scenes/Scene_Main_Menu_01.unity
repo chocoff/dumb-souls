@@ -5664,6 +5664,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3261409593005876590, guid: e57926b06385740f28cfe5fbcb8c7a91, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7309598991605286165, guid: e57926b06385740f28cfe5fbcb8c7a91, type: 3}
       propertyPath: m_Name
       value: Player Input Manager
