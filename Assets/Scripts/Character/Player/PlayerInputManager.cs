@@ -136,6 +136,7 @@ namespace FR
             HandleCameraMovementInput();
             HandleDodgeInput();
             HandleSprintingInput();
+            HandleJumpInput();
         }
 
         // MOVEMENT

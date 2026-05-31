@@ -12,21 +12,29 @@ namespace FR
         [HideInInspector] public float horizontalMovement;
         [HideInInspector] public float moveAmount;
 
-        private Vector3 moveDirection;
-        private Vector3 targetRotationDirection;
+
         //[Header("MOVEMENT SETTINGS")]
         [Header("MOVEMENT SETTINGS")]
+        private Vector3 moveDirection;
+        private Vector3 targetRotationDirection;
+
         [SerializeField] private float walkingSpeed = 2;
         [SerializeField] private float runningSpeed = 4.5f;
         [SerializeField] private float sprintingSpeed = 8;
         [SerializeField] private float rotationSpeed = 14;
         [SerializeField] private int sprintingStaminaCost = 3;
 
+        [Header("JUMP")]
+        [SerializeField] private float jumpStaminaCost = 3;
+        [SerializeField] private float jumpHeight = 2;
+        [SerializeField] private float jumpForwardSpeed= 4f;
+        [SerializeField] private float freeFallSpeed = 1.8f;
+        private Vector3 jumpDirection;
+
 
         [Header("DODGE")]
         private Vector3 rollDirection;
         [SerializeField] private float dodgeStaminaCost = 3;
-        [SerializeField] private float jumpStaminaCost = 3;
 
         protected override void Awake()
         {
@@ -60,9 +68,10 @@ namespace FR
 
         public void HandleAllMovement()
         {
-            //TODO: Handle jump
             HandleGroundedMovement();
             HandleRotation();
+            HandleJumpingMovement();
+            HandleFreeFallMovement();
         }
 
         private void GetMovementValues()
@@ -111,6 +120,28 @@ namespace FR
 
         }
     
+        private void HandleJumpingMovement()
+        {
+            if (player.isJumping)
+            {
+                player.characterController.Move(jumpDirection * jumpForwardSpeed * Time.deltaTime);
+            }
+        }
+
+        private void HandleFreeFallMovement()
+        {
+            if (!player.isGrounded)
+            {
+                Vector3 freeFallDirection;
+
+                freeFallDirection = PlayerCamera.instance.transform.forward * PlayerInputManager.instance.verticalInput;
+                freeFallDirection += PlayerCamera.instance.transform.right * PlayerInputManager.instance.horizontalInput;
+                freeFallDirection.y = 0;
+
+                player.characterController.Move(freeFallDirection * freeFallSpeed * Time.deltaTime);
+            }
+        }
+
         private void HandleRotation()
         {
             if (!player.canRotate)
@@ -220,11 +251,34 @@ namespace FR
             player.isJumping = true;
 
             player.playerNetworkManager.currentStamina.Value -= jumpStaminaCost;
+
+            jumpDirection = PlayerCamera.instance.cameraObject.transform.forward * PlayerInputManager.instance.verticalInput;
+            jumpDirection += PlayerCamera.instance.cameraObject.transform.right * PlayerInputManager.instance.horizontalInput;
+            jumpDirection.y = 0;
+
+            if (jumpDirection != Vector3.zero)
+            {
+                // If we are sprinting, jump direction is at full distance
+                if (player.playerNetworkManager.isSprinting.Value)
+                {
+                    jumpDirection *= 1;
+                }
+                // If we are running, jump direction is at half distance
+                else if (PlayerInputManager.instance.moveAmount > 0.5)
+                {
+                    jumpDirection *= 0.5f;
+                }
+                // If we are walking, jump direction is at quarter distance
+                else if (PlayerInputManager.instance.moveAmount <= 0.5)
+                {
+                    jumpDirection *= 0.25f;
+                }
+            }
         }
     
         public void ApplyJumpingVelocity()
         {
-            // apply upward jumping velocity
+            yVelocity.y = Mathf.Sqrt(jumpHeight * -2 * gravityForce);
         }
 
     }

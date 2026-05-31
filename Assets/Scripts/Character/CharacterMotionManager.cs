@@ -7,7 +7,7 @@ namespace FR {
         CharacterManager character;
 
         [Header("GROUND CHECK & JUMPING")]
-        [SerializeField] private float gravityForce = -5.55f;
+        [SerializeField] protected float gravityForce = -8.5f;
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private float groundCheckSphereRadius = 0.3f;
         [SerializeField] protected Vector3 yVelocity;               // Force at which character is pulled up or down (jumping or falling)
@@ -50,7 +50,7 @@ namespace FR {
                 yVelocity.y += gravityForce * Time.deltaTime;
             }
 
-            // There should always be some force applied to the Y velocity of the character
+            // There should always be some force applied to the Y velocity of the character 
             character.characterController.Move(yVelocity * Time.deltaTime);
 
         }

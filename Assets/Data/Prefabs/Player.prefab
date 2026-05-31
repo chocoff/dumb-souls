@@ -397,6 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8733feeb6bbce17fbf364f3dd9b2368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FR.PlayerMotionManager
+  gravityForce: -10
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
@@ -412,8 +413,11 @@ MonoBehaviour:
   sprintingSpeed: 8
   rotationSpeed: 14
   sprintingStaminaCost: 3
-  dodgeStaminaCost: 3
   jumpStaminaCost: 3
+  jumpHeight: 2
+  jumpForwardSpeed: 4
+  freeFallSpeed: 1.8
+  dodgeStaminaCost: 3
 --- !u!114 &-8588052145637734094
 MonoBehaviour:
   m_ObjectHideFlags: 0
