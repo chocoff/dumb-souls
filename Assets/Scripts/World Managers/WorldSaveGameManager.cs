@@ -153,7 +153,7 @@ namespace FR {
                 {
                     currentCharacterSlotBeingUsed = slot;
                     currentCharacterData = new CharacterSaveData();
-                    StartCoroutine(LoadWorldScene());
+                    NewGame();
                     return; // Exit the entire function since we successfully started a new game
                 }
             }
@@ -161,6 +161,13 @@ namespace FR {
             // If code reaches this point, it means ALL slots are already full. TODO: handle this case (UI message, provide option to delete savefile). UPDATE: DONE!!!
             TitleScreenManager.Instance.DisplayNoFreeCharacterSlotPopUp();
             Debug.LogWarning("ALL CHARACTER SLOTS ARE CURRENTLY FULL!");
+        }
+
+        private void NewGame()
+        {
+            // Saves the newly creted characters stats, and items (when creation screen is added)
+            SaveGame();
+            StartCoroutine(LoadWorldScene());
         }
 
         public void LoadGame()

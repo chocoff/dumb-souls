@@ -18,6 +18,22 @@ namespace FR{
             character = GetComponent<CharacterManager>();
         }
 
+        protected virtual void Start()
+        {
+            
+        }
+
+        public int CalculateHealthBasedOnVitalityLevel(int vitality)
+        {
+            float health = 0;
+
+            // Create an equation for how the stamina be calculated
+
+            health = vitality * 15;
+
+            return Mathf.RoundToInt(health);
+        }
+
         public int CalculateStaminaBasedOnEnduraceLevel(int endurance)
         {
             float stamina = 0;

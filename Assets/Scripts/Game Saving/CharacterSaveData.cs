@@ -20,6 +20,14 @@ namespace FR
         public float xPosition;
         public float yPosition;
         public float zPosition;
+
+        [Header("RESOURCES")]
+        public float currentHealth;
+        public float currentStamina;
+
+        [Header("STATS")]
+        public int vitality;
+        public int endurance;
     }
 
 }
