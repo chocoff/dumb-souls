@@ -8,6 +8,9 @@ namespace FR
 
         public static WorldCharacterEffectsManager instance;
 
+        [Header("DAMAGE")]
+        public TakeDamageEffect takeDamageEffect;
+
         [SerializeField] List<InstantCharacterEffect> instantEffects;
 
         private void Awake()
