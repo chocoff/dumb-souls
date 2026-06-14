@@ -22,7 +22,7 @@ namespace FR
         public float zPosition;
 
         [Header("RESOURCES")]
-        public float currentHealth;
+        public int currentHealth;
         public float currentStamina;
 
         [Header("STATS")]

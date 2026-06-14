@@ -22,10 +22,10 @@ namespace FR
         [SerializeField] private float runningSpeed = 4.5f;
         [SerializeField] private float sprintingSpeed = 8;
         [SerializeField] private float rotationSpeed = 14;
-        [SerializeField] private int sprintingStaminaCost = 3;
+        [SerializeField] private int sprintingStaminaCost = 5;
 
         [Header("JUMP")]
-        [SerializeField] private float jumpStaminaCost = 3;
+        [SerializeField] private float jumpStaminaCost = 15;
         [SerializeField] private float jumpHeight = 2;
         [SerializeField] private float jumpForwardSpeed= 4f;
         [SerializeField] private float freeFallSpeed = 1.8f;
@@ -34,7 +34,7 @@ namespace FR
 
         [Header("DODGE")]
         private Vector3 rollDirection;
-        [SerializeField] private float dodgeStaminaCost = 3;
+        [SerializeField] private float dodgeStaminaCost = 20;
 
         protected override void Awake()
         {

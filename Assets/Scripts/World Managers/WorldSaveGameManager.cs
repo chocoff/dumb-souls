@@ -165,6 +165,10 @@ namespace FR {
 
         private void NewGame()
         {
+
+            player.playerNetworkManager.vitality.Value = 15;
+            player.playerNetworkManager.endurance.Value = 10;
+
             // Saves the newly creted characters stats, and items (when creation screen is added)
             SaveGame();
             StartCoroutine(LoadWorldScene());

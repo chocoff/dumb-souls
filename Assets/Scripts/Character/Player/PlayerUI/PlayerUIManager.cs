@@ -10,6 +10,7 @@ namespace FR{
         [SerializeField] bool startGameAsClient;
 
         [HideInInspector] public PlayerUIHUDManager playerUIHUDManager;
+        [HideInInspector] public PlayerUIPopUpManager playerUIPopUpManager;
 
         private void Awake()
         {
@@ -24,6 +25,7 @@ namespace FR{
             }
 
             playerUIHUDManager = GetComponentInChildren<PlayerUIHUDManager>();
+            playerUIPopUpManager = GetComponentInChildren<PlayerUIPopUpManager>();
         }
 
         private void Start()
